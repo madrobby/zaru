@@ -30,6 +30,8 @@ class ZaruTest < Test::Unit::TestCase
       assert_equal 'aa', Zaru.sanitize!("a#{char}a")
     end
     
+    assert_equal "笊, ざる.pdf", Zaru.sanitize!("笊, ざる.pdf")
+    
     assert_equal "whatēverwëirduserînput", 
       Zaru.sanitize!("  what\ēver//wëird:user:înput:")
   end
