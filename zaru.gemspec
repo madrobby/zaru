@@ -7,5 +7,5 @@ Gem::Specification.new do |s|
   s.authors     = ["Thomas Fuchs"]
   s.email       = 'thomas@slash7.com'
   s.files       = ["lib/zaru.rb"]
-  s.homepage    = 'http://rubygems.org/gems/zaru'
+  s.homepage    = 'http://github.com/madrobby/zaru'
 end

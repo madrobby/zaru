@@ -16,6 +16,19 @@ It removes the bad stuff but leaves unicode characters in place, so users can us
 
 Zaru works with Ruby 1.8.7 or later. It's experimental and may eat your cat. Don't trust it in production systems.
 
+Bad things in filenames
+-----------------------
+
+Wikipedia has a [good overview on filenames](http://en.wikipedia.org/wiki/Filename). Basically, on modern-ish operating systems, the following characters  are considered no-no (Zaru filters these):
+
+```
+/ \ ? * : | " < >
+```
+
+Additionally the [ASCII control characters](http://en.wikipedia.org/wiki/ASCII#ASCII_control_characters) (hexadecimal `00` to `1f`) are filtered.
+
+All [Unicode whitespace](http://en.wikipedia.org/wiki/Whitespace_character#Unicode) at the beginning and end of the potential filename is removed, and any Unicode whitespace within the filename is collapse to a single space character.
+
 TODO
 ----
 
