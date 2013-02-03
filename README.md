@@ -23,4 +23,6 @@ TODO
 * Fix failing test suite (it does work locally with 1.9.3)
 * Extend test suite
 
+[Wait, what, Zaru?](http://en.wikipedia.org/wiki/Zaru)
+
 Zaru is licensed under the terms of the MIT license. (c) 2013 Thomas Fuchs.
