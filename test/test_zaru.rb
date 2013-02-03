@@ -29,6 +29,9 @@ class ZaruTest < Test::Unit::TestCase
       assert_equal 'a', Zaru.sanitize!("#{char}a")
       assert_equal 'aa', Zaru.sanitize!("a#{char}a")
     end
+    
+    assert_equal "whatēverwëirduserînput", 
+      Zaru.sanitize!("  what\ēver//wëird:user:înput:")
   end
   
 end
