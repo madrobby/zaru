@@ -33,7 +33,6 @@ TODO
 ----
 
 * Make sure truncation is correct on Ruby 1.8
-* Fix failing test suite (it does work locally with 1.9.3)
 * Extend test suite
 
 [Wait, what, Zaru?](http://en.wikipedia.org/wiki/Zaru)
