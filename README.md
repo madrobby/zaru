@@ -29,6 +29,8 @@ Additionally the [ASCII control characters](http://en.wikipedia.org/wiki/ASCII#A
 
 All [Unicode whitespace](http://en.wikipedia.org/wiki/Whitespace_character#Unicode) at the beginning and end of the potential filename is removed, and any Unicode whitespace within the filename is collapse to a single space character.
 
+[Certain filenames are reserved in Windows](http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247(v=vs.85).aspx) and are filtered.
+
 TODO
 ----
 
