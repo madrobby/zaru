@@ -1,6 +1,8 @@
 zaru
 ====
 
+[![Build Status](https://travis-ci.org/madrobby/zaru.png)](https://travis-ci.org/madrobby/zaru)
+
 Filename sanitization for Ruby.
 
 ```ruby
@@ -18,6 +20,7 @@ TODO
 ----
 
 * Make sure truncation is correct on Ruby 1.8
+* Fix failing test suite (it does work locally with 1.9.3)
 * Extend test suite
 
 Zaru is licensed under the terms of the MIT license. (c) 2013 Thomas Fuchs.
