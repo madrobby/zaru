@@ -21,7 +21,7 @@ class Zaru
   # remove characters that aren't allowed cross-OS
   def sanitize
     @sanitized ||= 
-      filter_windows_reserved_names(normalize.gsub(CHARACTER_FILTER,''))
+      filter(normalize.gsub(CHARACTER_FILTER,''))
   end
 
   # normalize unicode string and cut off at 255 characters
@@ -42,8 +42,17 @@ class Zaru
   
   private
 
+    def filter(filename)
+      filename = filter_windows_reserved_names(filename)
+      filename = filter_blank(filename)
+    end
+
     def filter_windows_reserved_names(filename)
       WINDOWS_RESERVED_NAMES.include?(filename.upcase) ? 'file' : filename
+    end
+
+    def filter_blank(filename)
+      filename == '' ? 'file': filename 
     end
   
 end
