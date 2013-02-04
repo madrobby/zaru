@@ -24,7 +24,7 @@ class ZaruTest < Test::Unit::TestCase
     assert_equal "abcdef", Zaru.sanitize!('abcdef')
     
     %w(< > | / \\ * ? :).each do |char|
-      assert_equal '', Zaru.sanitize!(char)
+      assert_equal 'file', Zaru.sanitize!(char)
       assert_equal 'a', Zaru.sanitize!("a#{char}")
       assert_equal 'a', Zaru.sanitize!("#{char}a")
       assert_equal 'aa', Zaru.sanitize!("a#{char}a")
@@ -43,6 +43,10 @@ class ZaruTest < Test::Unit::TestCase
     assert_equal "file", Zaru.sanitize!(' aux')
     assert_equal "file", Zaru.sanitize!(" LpT\x122")
     assert_equal "COM10", Zaru.sanitize!('COM10')
+  end
+
+  def test_blanks
+    assert_equal "file", Zaru.sanitize!("<")
   end
   
 end
