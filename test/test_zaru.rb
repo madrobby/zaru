@@ -48,5 +48,10 @@ class ZaruTest < Test::Unit::TestCase
   def test_blanks
     assert_equal "file", Zaru.sanitize!("<")
   end
-  
+
+  def test_dots
+    assert_equal "file.pdf", Zaru.sanitize!(".pdf")
+    assert_equal "file.pdf", Zaru.sanitize!("<.pdf")
+    assert_equal "file..pdf", Zaru.sanitize!("..pdf")
+  end
 end

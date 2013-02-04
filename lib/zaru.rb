@@ -45,6 +45,7 @@ class Zaru
     def filter(filename)
       filename = filter_windows_reserved_names(filename)
       filename = filter_blank(filename)
+      filename = filter_dot(filename)
     end
 
     def filter_windows_reserved_names(filename)
@@ -53,6 +54,10 @@ class Zaru
 
     def filter_blank(filename)
       filename == '' ? 'file': filename 
+    end
+
+    def filter_dot(filename)
+      filename.start_with?('.') ? "file#{filename}" : filename
     end
   
 end
