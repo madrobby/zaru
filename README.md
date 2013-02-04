@@ -3,7 +3,7 @@ zaru
 
 [![Build Status](https://travis-ci.org/madrobby/zaru.png)](https://travis-ci.org/madrobby/zaru)
 
-Filename sanitization for Ruby.
+Filename sanitization for Ruby. This is useful when you generate filenames for downloads from user input (we're using it for PDF invoice downloads in [Freckle](http://letsfreckle.com)).
 
 ```ruby
 Zaru.sanitize! "  what\ēver//wëird:user:înput:"
