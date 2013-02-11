@@ -19,19 +19,21 @@ class Zaru
     @normalized ||= @raw.strip.gsub(UNICODE_WHITESPACE,' ')
   end
 
-  # remove characters that aren't allowed cross-OS
+  # remove bad things!
+  # - remove characters that aren't allowed cross-OS
+  # - don't allow certain special filenames (issue on Windows)
+  # - don't allow filenames to start with a dot
+  # - don't allow empty filenames
   def sanitize
     @sanitized ||=
       filter(normalize.gsub(CHARACTER_FILTER,''))
   end
 
-  # normalize unicode string and cut off at 255 characters
-  # TODO
+  # cut off at 255 characters
   def truncate
     @truncated ||= sanitize.chars.to_a.slice(0..254).join
   end
 
-  # convert back from multibyte string
   def to_s
     truncate
   end
@@ -54,11 +56,11 @@ class Zaru
     end
 
     def filter_blank(filename)
-      filename == '' ? FALLBACK_FILENAME : filename
+      filename.empty?? FALLBACK_FILENAME : filename
     end
 
     def filter_dot(filename)
-      filename.start_with?('.') ? "#{FALLBACK_FILENAME}#{filename}" : filename
+      filename.start_with?('.')? "#{FALLBACK_FILENAME}#{filename}" : filename
     end
 
 end
