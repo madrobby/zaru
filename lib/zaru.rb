@@ -3,10 +3,11 @@
 class Zaru
   CHARACTER_FILTER = /[\x00-\x1F\/\\:\*\?\"<>\|]/u
   UNICODE_WHITESPACE = /[[:space:]]+/u
-  WINDOWS_RESERVED_NAMES = 
+  WINDOWS_RESERVED_NAMES =
     %w{CON PRN AUX NUL COM1 COM2 COM3 COM4 COM5
-       COM6 COM7 COM8 COM9 LPT1 LPT2 LPT3 LPT4 
+       COM6 COM7 COM8 COM9 LPT1 LPT2 LPT3 LPT4
        LPT5 LPT6 LPT7 LPT8 LPT9}
+  FALLBACK_FILENAME = 'file'
 
   def initialize(filename)
     @raw = filename.to_s.freeze
@@ -20,7 +21,7 @@ class Zaru
 
   # remove characters that aren't allowed cross-OS
   def sanitize
-    @sanitized ||= 
+    @sanitized ||=
       filter(normalize.gsub(CHARACTER_FILTER,''))
   end
 
@@ -34,12 +35,12 @@ class Zaru
   def to_s
     truncate
   end
-  
+
   # convenience method
   def self.sanitize!(filename)
     new(filename).to_s
   end
-  
+
   private
 
     def filter(filename)
@@ -53,11 +54,11 @@ class Zaru
     end
 
     def filter_blank(filename)
-      filename == '' ? 'file': filename 
+      filename == '' ? FALLBACK_FILENAME : filename
     end
 
     def filter_dot(filename)
-      filename.start_with?('.') ? "file#{filename}" : filename
+      filename.start_with?('.') ? "#{FALLBACK_FILENAME}#{filename}" : filename
     end
-  
+
 end
