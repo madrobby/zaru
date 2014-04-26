@@ -9,7 +9,8 @@ class Zaru
        LPT5 LPT6 LPT7 LPT8 LPT9}
   FALLBACK_FILENAME = 'file'
 
-  def initialize(filename)
+  def initialize(filename, options = {})
+    @padding = options[:padding] || 0
     @raw = filename.to_s.freeze
   end
 
@@ -30,8 +31,10 @@ class Zaru
   end
 
   # cut off at 255 characters
+  # optionally provide a padding, which is useful to
+  # make sure there is room to add a file extension later
   def truncate
-    @truncated ||= sanitize.chars.to_a.slice(0..254).join
+    @truncated ||= sanitize.chars.to_a.slice(0..254-@padding).join
   end
 
   def to_s
@@ -39,8 +42,8 @@ class Zaru
   end
 
   # convenience method
-  def self.sanitize!(filename)
-    new(filename).to_s
+  def self.sanitize!(filename, options = {})
+    new(filename, options).to_s
   end
 
   private
