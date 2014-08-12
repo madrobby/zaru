@@ -55,7 +55,7 @@ class Zaru
     end
 
     def filter_windows_reserved_names(filename)
-      WINDOWS_RESERVED_NAMES.include?(filename.upcase) ? 'file' : filename
+      WINDOWS_RESERVED_NAMES.include?(filename.upcase) ? FALLBACK_FILENAME : filename
     end
 
     def filter_blank(filename)
