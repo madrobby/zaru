@@ -2,12 +2,12 @@ language: ruby
 rvm:
   - 1.8.7
   - ree
-  - 1.9.3
   - 1.9.2
+  - 1.9.3
   - 2.0.0
   - 2.1.0
+  - 2.2.0
   - ruby-head
-  - jruby-19mode
   - jruby-head
 notifications:
   recipients:
