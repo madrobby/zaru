@@ -1,12 +1,14 @@
 sudo: false
 language: ruby
+bundle_args: --binstubs
 rvm:
-  - 1.8.7
-  - ree
+  - jruby-19mode
+  - jruby-head
+  - rbx
   - 1.9.2
   - 1.9.3
   - 2.0.0
-  - 2.1.0
-  - 2.2.0
+  - 2.1
+  - 2.2
   - ruby-head
-  - jruby-head
+script: bundle exec rspec spec

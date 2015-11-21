@@ -22,7 +22,7 @@ Zaru.sanitize! "A"*400, :padding => 100
 # resulting filename is 145 characters long
 ```
 
-Zaru works with Ruby 1.8.7 or later. It's experimental and may eat your cat. Don't trust it in production systems.
+Zaru works with Ruby 1.9.2 or later. It's experimental and may eat your cat. Don't trust it in production systems.
 
 Bad things in filenames
 -----------------------
@@ -38,12 +38,6 @@ Additionally the [ASCII control characters](http://en.wikipedia.org/wiki/ASCII#A
 All [Unicode whitespace](http://en.wikipedia.org/wiki/Whitespace_character#Unicode) at the beginning and end of the potential filename is removed, and any Unicode whitespace within the filename is collapse to a single space character.
 
 [Certain filenames are reserved in Windows](http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247%28v=vs.85%29.aspx) and are filtered.
-
-TODO
-----
-
-* Make sure truncation is correct on Ruby 1.8
-* Extend test suite
 
 [Wait, what, Zaru?](http://en.wikipedia.org/wiki/Zaru)
 
