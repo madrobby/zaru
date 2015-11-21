@@ -10,6 +10,3 @@ rvm:
   - 2.2.0
   - ruby-head
   - jruby-head
-notifications:
-  recipients:
-    - thomas@slash7.com
