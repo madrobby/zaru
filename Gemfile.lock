@@ -1,12 +1,23 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    rake (10.1.1)
-    test-unit (2.5.4)
+    diff-lcs (1.2.5)
+    rspec (3.3.0)
+      rspec-core (~> 3.3.0)
+      rspec-expectations (~> 3.3.0)
+      rspec-mocks (~> 3.3.0)
+    rspec-core (3.3.2)
+      rspec-support (~> 3.3.0)
+    rspec-expectations (3.3.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.3.0)
+    rspec-mocks (3.3.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.3.0)
+    rspec-support (3.3.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  rake
-  test-unit (~> 2.5.4)
+  rspec (~> 3.3.0)
