@@ -1,7 +1,7 @@
 zaru
 ====
 
-[![Build Status](https://travis-ci.org/madrobby/zaru.png)](https://travis-ci.org/madrobby/zaru)
+[![Build Status](https://travis-ci.org/madrobby/zaru.svg)](https://travis-ci.org/madrobby/zaru)
 
 Filename sanitization for Ruby. This is useful when you generate filenames for downloads from user input (we're using it for PDF invoice downloads in [Freckle](http://letsfreckle.com)).
 
