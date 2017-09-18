@@ -10,7 +10,7 @@ class ZaruTest < Test::Unit::TestCase
       assert_equal 'a', Zaru.sanitize!(name)
     end
 
-    ['x x', 'x  x', 'x   x', "x\tx", "x\r\nx"].each do |name|
+    ['x x', 'x  x', 'x   x', ' x  |  x ', "x\tx", "x\r\nx"].each do |name|
       assert_equal 'x x', Zaru.sanitize!(name)
     end
   end

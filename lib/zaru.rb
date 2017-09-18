@@ -25,9 +25,11 @@ class Zaru
   # - don't allow certain special filenames (issue on Windows)
   # - don't allow filenames to start with a dot
   # - don't allow empty filenames
+  #
+  # this renormalizes after filtering in order to collapse whitespace
   def sanitize
     @sanitized ||=
-      filter(normalize.gsub(CHARACTER_FILTER,''))
+      filter(normalize.gsub(CHARACTER_FILTER,'')).gsub(UNICODE_WHITESPACE,' ')
   end
 
   # cut off at 255 characters

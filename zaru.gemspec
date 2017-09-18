@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'zaru'
-  s.version     = '0.1.0'
-  s.date        = '2014-04-26'
+  s.version     = '0.2.0'
+  s.date        = '2017-09-18'
   s.summary     = "Filename sanitization for Ruby"
   s.description = "Zaru takes a given filename (a string) and normalizes, filters and truncates it, so it can be safely used as a filename in modern operating systems. Zaru doesn't remove Unicode characters when not necessary."
   s.authors     = ["Thomas Fuchs"]
