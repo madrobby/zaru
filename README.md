@@ -22,6 +22,14 @@ Zaru.sanitize! "A"*400, :padding => 100
 # resulting filename is 145 characters long
 ```
 
+If you need to customize the fallback filename you can add your own fallback
+with the `:fallback` option:
+
+```
+Zaru.sanitize! "<<<", :fallback => 'no_file'
+# resulting filename is 'no_file'
+```
+
 Zaru works with Ruby 1.8.7 or later. It's experimental and may eat your cat. Don't trust it in production systems.
 
 Bad things in filenames

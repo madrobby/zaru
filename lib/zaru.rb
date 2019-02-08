@@ -10,6 +10,7 @@ class Zaru
   FALLBACK_FILENAME = 'file'
 
   def initialize(filename, options = {})
+    @fallback = options[:fallback] || FALLBACK_FILENAME
     @padding = options[:padding] || 0
     @raw = filename.to_s.freeze
   end
@@ -50,6 +51,8 @@ class Zaru
 
   private
 
+    attr_reader :fallback
+
     def filter(filename)
       filename = filter_windows_reserved_names(filename)
       filename = filter_blank(filename)
@@ -57,15 +60,15 @@ class Zaru
     end
 
     def filter_windows_reserved_names(filename)
-      WINDOWS_RESERVED_NAMES.include?(filename.upcase) ? FALLBACK_FILENAME : filename
+      WINDOWS_RESERVED_NAMES.include?(filename.upcase) ? fallback : filename
     end
 
     def filter_blank(filename)
-      filename.empty?? FALLBACK_FILENAME : filename
+      filename.empty?? fallback : filename
     end
 
     def filter_dot(filename)
-      filename.start_with?('.')? "#{FALLBACK_FILENAME}#{filename}" : filename
+      filename.start_with?('.')? "#{fallback}#{filename}" : filename
     end
 
 end

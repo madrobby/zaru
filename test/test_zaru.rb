@@ -62,11 +62,9 @@ class ZaruTest < Test::Unit::TestCase
     assert_equal "file", Zaru.sanitize!('lpt1')
     assert_equal "file.pdf", Zaru.sanitize!('<.pdf')
 
-    Zaru.const_set :FALLBACK_FILENAME, 'blub'
-    assert_equal "blub", Zaru.sanitize!('<')
-    assert_equal "blub", Zaru.sanitize!('lpt1')
-    assert_equal "blub.pdf", Zaru.sanitize!('<.pdf')
-    Zaru.const_set :FALLBACK_FILENAME, 'file'
+    assert_equal "blub", Zaru.sanitize!('<', :fallback => 'blub')
+    assert_equal "blub", Zaru.sanitize!('lpt1', :fallback => 'blub')
+    assert_equal "blub.pdf", Zaru.sanitize!('<.pdf', :fallback => 'blub')
   end
 
 end
