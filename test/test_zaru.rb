@@ -22,6 +22,14 @@ class ZaruTest < Test::Unit::TestCase
     assert_equal 245, Zaru.sanitize!(name, :padding => 10).length
   end
 
+  def test_truncation_with_unicode_chars
+    name = '–'*400 #  '–' has bytesize 3
+    assert_equal 255, Zaru.sanitize!(name).bytesize
+
+    # less then expected because we can not cut the char in the middle
+    assert_equal 243, Zaru.sanitize!(name, :padding => 10).bytesize
+  end
+
   def test_sanitization
     assert_equal "abcdef", Zaru.sanitize!('abcdef')
 
