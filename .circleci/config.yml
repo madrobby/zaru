@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  ruby: circleci/ruby@0.1.2 
+  ruby: circleci/ruby@1.1.2 
 
 jobs:
   build:
@@ -9,8 +9,29 @@ jobs:
     executor: ruby/default
     steps:
       - checkout
+      - ruby/install:
+          version: '2.5'
+      - run: echo "Ruby 2.5 has been installed"
       - run:
           name: Which bundler?
           command: bundle -v
-      - ruby/bundle-install
+      - run:
+          rake
+      - ruby/install:
+          version: '2.6'
+      - run: echo "Ruby 2.6 has been installed"
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      - run:
+          rake
+      - ruby/install:
+          version: '2.7'
+      - run: echo "Ruby 2.7 has been installed"
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      - run:
+          rake
+
 
