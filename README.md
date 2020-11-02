@@ -1,9 +1,7 @@
 zaru
 ====
 
-[![Build Status](https://travis-ci.org/madrobby/zaru.svg)](https://travis-ci.org/madrobby/zaru)
-
-Filename sanitization for Ruby. This is useful when you generate filenames for downloads from user input (we're using it for PDF invoice downloads in [Freckle](http://letsfreckle.com)).
+Filename sanitization for Ruby. This is useful when you generate filenames for downloads from user input (we're using it for PDF invoice downloads in [Noko](https://nokotime.com)).
 
 ```ruby
 Zaru.sanitize! "  what\ēver//wëird:user:înput:"
@@ -47,12 +45,7 @@ All [Unicode whitespace](http://en.wikipedia.org/wiki/Whitespace_character#Unico
 
 [Certain filenames are reserved in Windows](http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247%28v=vs.85%29.aspx) and are filtered.
 
-TODO
-----
-
-* Make sure truncation is correct on Ruby 1.8
-* Extend test suite
-
 [Wait, what, Zaru?](http://en.wikipedia.org/wiki/Zaru)
 
-Zaru is licensed under the terms of the MIT license. (c) 2013 Thomas Fuchs.
+Zaru is licensed under the terms of the MIT license. 
+(c) 2013-2020 Thomas Fuchs
