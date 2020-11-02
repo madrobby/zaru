@@ -15,48 +15,48 @@ jobs:
           name: Which bundler?
           command: bundle -v
       - run:
-          rake
+          rvm-exec 2.0 rake
       - ruby/install:
           version: '2.2'
       - run:
           name: Which bundler?
           command: bundle -v
       - run:
-          rake
+          rvm-exec 2.2 rake
       - ruby/install:
           version: '2.4'
       - run:
           name: Which bundler?
           command: bundle -v
       - run:
-          rake
+          rvm-exec 2.4 rake
       - ruby/install:
           version: '2.5'
       - run:
           name: Which bundler?
           command: bundle -v
       - run:
-          rake
+          rvm-exec 2.5 rake
       - ruby/install:
           version: '2.6'
       - run:
           name: Which bundler?
           command: bundle -v
       - run:
-          rake
+          rvm-exec 2.6 rake
       - ruby/install:
           version: '2.7'
       - run:
           name: Which bundler?
           command: bundle -v
       - run:
-          rake
+          rvm-exec 2.7 rake
       - ruby/install:
-          version: 'latest'
+          version: '3.0'
       - run:
           name: Which bundler?
           command: bundle -v
       - run:
-          rake
+          rvm-exec 3.0 rake
 
 
