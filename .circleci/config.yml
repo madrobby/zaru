@@ -51,12 +51,5 @@ jobs:
           command: bundle -v
       - run:
           rvm-exec 2.7 rake
-      - ruby/install:
-          version: '3.0'
-      - run:
-          name: Which bundler?
-          command: bundle -v
-      - run:
-          rvm-exec 3.0 rake
 
 
