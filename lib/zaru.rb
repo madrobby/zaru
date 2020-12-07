@@ -37,7 +37,13 @@ class Zaru
   # optionally provide a padding, which is useful to
   # make sure there is room to add a file extension later
   def truncate
-    @truncated ||= sanitize.chars.to_a.slice(0..254-@padding).join
+    max_size = 255 - @padding
+    size = 0
+
+    @truncated ||= sanitize.chars.take_while do |char|
+      size += char.bytesize
+      size <= max_size
+    end.join
   end
 
   def to_s
