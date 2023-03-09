@@ -1,7 +1,6 @@
 zaru
 ====
-
-[![CircleCI](https://circleci.com/gh/madrobby/zaru.svg?style=svg)](https://circleci.com/gh/madrobby/zaru)
+![Tests](https://github.com/madrobby/zaru/actions/workflows/main.yml/badge.svg)
 
 Filename sanitization for Ruby. This is useful when you generate filenames for downloads from user input (we're using it for PDF invoice downloads in [Noko](https://nokotime.com)).
 
