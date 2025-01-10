@@ -20,6 +20,8 @@ class ZaruTest < Test::Unit::TestCase
     assert_equal 255, Zaru.sanitize!(name).length
 
     assert_equal 245, Zaru.sanitize!(name, :padding => 10).length
+
+    assert_equal 255, Zaru.sanitize!("笊"*100).bytesize
   end
 
   def test_sanitization
