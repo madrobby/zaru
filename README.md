@@ -1,6 +1,5 @@
 zaru
 ====
-![Tests](https://github.com/madrobby/zaru/actions/workflows/main.yml/badge.svg)
 
 Filename sanitization for Ruby. This is useful when you generate filenames for downloads from user input (we're using it for PDF invoice downloads in [Noko](https://nokotime.com)).
 
@@ -49,4 +48,4 @@ All [Unicode whitespace](http://en.wikipedia.org/wiki/Whitespace_character#Unico
 [Wait, what, Zaru?](http://en.wikipedia.org/wiki/Zaru)
 
 Zaru is licensed under the terms of the MIT license. 
-(c) 2013-2023 Thomas Fuchs
+(c) 2013-2025 Thomas Fuchs
