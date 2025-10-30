@@ -33,11 +33,21 @@ class Zaru
       filter(normalize.gsub(CHARACTER_FILTER,'')).gsub(UNICODE_WHITESPACE,' ')
   end
 
-  # cut off at 255 characters
+  # cut off at 255 bytes
   # optionally provide a padding, which is useful to
   # make sure there is room to add a file extension later
   def truncate
-    @truncated ||= sanitize.chars.to_a.slice(0..254-@padding).join
+    max_size = 255 - @padding
+    @truncated ||= begin
+      return sanitize if sanitize.bytesize < max_size
+
+      result = ''
+      sanitize.each_char do |ch|
+        return result if result.bytesize + ch.bytesize > max_size
+
+        result << ch
+      end
+    end
   end
 
   def to_s
