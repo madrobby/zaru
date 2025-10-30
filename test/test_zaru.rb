@@ -38,16 +38,20 @@ class ZaruTest < Test::Unit::TestCase
       Zaru.sanitize!('  what\\ēver//wëird:user:înput:')
   end
 
-  def test_windows_reserved_named
+  def test_windows_reserved_names
     assert_equal "file", Zaru.sanitize!('CON')
     assert_equal "file", Zaru.sanitize!('lpt1 ')
     assert_equal "file", Zaru.sanitize!('com4')
     assert_equal "file", Zaru.sanitize!(' aux')
     assert_equal "file", Zaru.sanitize!(" LpT\x122")
     assert_equal "COM10", Zaru.sanitize!('COM10')
+
+    assert_equal "con.ext", Zaru.sanitize!('con.ext')
+    assert_equal "file.con", Zaru.sanitize!('file.con')
   end
 
   def test_blanks
+    assert_equal "file", Zaru.sanitize!("")
     assert_equal "file", Zaru.sanitize!("<")
   end
 
