@@ -69,9 +69,7 @@ class Zaru
     return '' if parts.empty?
 
     if WINDOWS_RESERVED_NAMES.include?(parts[0].upcase)
-      parts.slice!(0)
-      parts.unshift(fallback)
-      parts.join('.')
+      parts.fill(fallback, 0, 1).join('.')
     else
       filename
     end
