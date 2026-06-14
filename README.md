@@ -46,8 +46,7 @@ It may eat your cat.
 Bad things in filenames
 -----------------------
 
-Wikipedia has a [good overview on filenames]\
-(https://en.wikipedia.org/wiki/Filename). Basically, on modern-ish operating
+Wikipedia has a [good overview on filenames](https://en.wikipedia.org/wiki/Filename). Basically, on modern-ish operating
 systems, the following characters are considered no-no (Zaru filters
 these):
 
@@ -55,17 +54,14 @@ these):
 / \ ? * : | " < >
 ```
 
-Additionally, the [ASCII control characters]\
-(https://en.wikipedia.org/wiki/ASCII#ASCII_control_characters) (hexadecimal
+Additionally, the [ASCII control characters](https://en.wikipedia.org/wiki/ASCII#ASCII_control_characters) (hexadecimal
 `00` to `1f`) are filtered.
 
-All [Unicode whitespace]\
-(https://en.wikipedia.org/wiki/Whitespace_character#Unicode) at the beginning
+All [Unicode whitespace](https://en.wikipedia.org/wiki/Whitespace_character#Unicode) at the beginning
 and end of the potential filename is removed, and any Unicode whitespace
 within the filename is collapsed to a single space character.
 
-[Certain filenames are reserved in Windows]\
-(https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file)
+[Certain filenames are reserved in Windows](https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file)
 and are filtered.
 
 [Wait, what, Zaru?](https://en.wikipedia.org/wiki/Zaru)
