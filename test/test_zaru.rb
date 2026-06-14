@@ -12,11 +12,25 @@ class ZaruTest < Test::Unit::TestCase
     end
   end
 
+  def test_nil_input
+    assert_equal 'file', Zaru.sanitize!(nil)
+  end
+
+  def test_integer_input
+    assert_equal '42', Zaru.sanitize!(42)
+  end
+
   def test_truncation
     name = 'A' * 400
     assert_equal 255, Zaru.sanitize!(name).length
 
     assert_equal 245, Zaru.sanitize!(name, padding: 10).length
+  end
+
+  def test_padding_boundary_254
+    result = Zaru.sanitize!('A' * 1000, padding: 254)
+    assert_equal 1, result.length
+    assert_operator result.length, :<=, 255
   end
 
   def test_truncation_with_large_padding
@@ -46,6 +60,10 @@ class ZaruTest < Test::Unit::TestCase
 
     assert_equal 'whatēverwëirduserînput',
                  Zaru.sanitize!('  what\\ēver//wëird:user:înput:')
+  end
+
+  def test_special_unicode_chars_filtered
+    assert_equal 'yo', Zaru.sanitize!("yo\x00")
   end
 
   def test_windows_reserved_names
@@ -97,4 +115,11 @@ class ZaruTest < Test::Unit::TestCase
     assert_equal 'blub', Zaru.sanitize!('lpt1', fallback: 'blub')
     assert_equal 'blub.pdf', Zaru.sanitize!('<.pdf', fallback: 'blub')
   end
+
+  def test_punctuation_only_with_custom_fallback
+    assert_equal 'custom', Zaru.sanitize!('...', fallback: 'custom')
+    assert_equal 'custom', Zaru.sanitize!('<<>>', fallback: 'custom')
+  end
+
+
 end

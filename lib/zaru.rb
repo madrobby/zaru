@@ -66,6 +66,8 @@ class Zaru
     return "" if filename.empty?
 
     parts = filename.split('.').reject(&:empty?)
+    return "" if parts.empty?
+
     if WINDOWS_RESERVED_NAMES.include?(parts[0].upcase)
       parts.slice!(0)
       parts.unshift(fallback)
