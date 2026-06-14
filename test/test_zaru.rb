@@ -12,11 +12,25 @@ class ZaruTest < Test::Unit::TestCase
     end
   end
 
+  def test_nil_input
+    assert_equal 'file', Zaru.sanitize!(nil)
+  end
+
+  def test_integer_input
+    assert_equal '42', Zaru.sanitize!(42)
+  end
+
   def test_truncation
     name = 'A' * 400
     assert_equal 255, Zaru.sanitize!(name).length
 
     assert_equal 245, Zaru.sanitize!(name, padding: 10).length
+  end
+
+  def test_padding_exact_boundary
+    result = Zaru.sanitize!('A' * 1000, padding: 254)
+    assert_equal 1, result.length
+    assert_operator result.length, :<=, 255
   end
 
   def test_truncation_with_large_padding
@@ -48,6 +62,10 @@ class ZaruTest < Test::Unit::TestCase
                  Zaru.sanitize!('  what\\ēver//wëird:user:înput:')
   end
 
+  def test_special_unicode_chars_filtered
+    assert_equal 'yo', Zaru.sanitize!("yo\x00")
+  end
+
   def test_windows_reserved_names
     assert_equal 'file', Zaru.sanitize!('CON')
     assert_equal 'file', Zaru.sanitize!('lpt1 ')
@@ -62,9 +80,17 @@ class ZaruTest < Test::Unit::TestCase
   end
 
   def test_windows_reserved_names_with_extensions
-    assert_equal 'con.ext', Zaru.sanitize!('con.ext')
-    assert_equal 'file.con', Zaru.sanitize!('file.con')
+    # Microsoft's documentation states that "avoid these names followed
+    # immediately by an extension; for example, NUL.txt and NUL.tar.gz
+    # are both equivalent to NUL
+    assert_equal 'file.txt', Zaru.sanitize!('nul.txt')
+    assert_equal 'file.txt', Zaru.sanitize!('.nul.txt')
+    assert_equal 'file.tar.gz', Zaru.sanitize!('nul.tar.gz')
+    assert_equal 'file.tar.gz', Zaru.sanitize!(' COM³.tar.gz ')
 
+    # it's fine if reserved names are used as extensions
+    # or as part of filenames
+    assert_equal 'file.con', Zaru.sanitize!('file.con')
     assert_equal 'Acon.ext', Zaru.sanitize!('Acon.ext')
     assert_equal 'Afile.con', Zaru.sanitize!('Afile.con')
   end
@@ -88,5 +114,10 @@ class ZaruTest < Test::Unit::TestCase
     assert_equal 'blub', Zaru.sanitize!('<', fallback: 'blub')
     assert_equal 'blub', Zaru.sanitize!('lpt1', fallback: 'blub')
     assert_equal 'blub.pdf', Zaru.sanitize!('<.pdf', fallback: 'blub')
+  end
+
+  def test_punctuation_only_with_custom_fallback
+    assert_equal 'custom', Zaru.sanitize!('...', fallback: 'custom')
+    assert_equal 'custom', Zaru.sanitize!('<<>>', fallback: 'custom')
   end
 end
