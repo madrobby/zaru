@@ -22,6 +22,19 @@ class ZaruTest < Test::Unit::TestCase
     assert_equal 245, Zaru.sanitize!(name, :padding => 10).length
   end
 
+  def test_truncation_with_large_padding
+    # padding >= 255 should not break — result should still be truncated to a reasonable length
+    assert_equal 1, Zaru.sanitize!("A" * 400, padding: 255).length
+    assert_equal 1, Zaru.sanitize!("A" * 400, padding: 300).length
+    assert_equal 1, Zaru.sanitize!("A" * 400, padding: 999).length
+  end
+
+  def test_truncation_does_not_overflow
+    # With large padding, we should never get more than 255 characters
+    result = Zaru.sanitize!("A" * 400, padding: 255)
+    assert_operator result.length, :<=, 255
+  end
+
   def test_sanitization
     assert_equal "abcdef", Zaru.sanitize!('abcdef')
 
