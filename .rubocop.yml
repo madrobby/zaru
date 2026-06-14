@@ -1,0 +1,4 @@
+AllCops:
+  NewCops: enable
+Gemspec/RequireMFA:
+  Enabled: false

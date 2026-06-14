@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
+# Zaru normalizes, sanitizes, and truncates filenames so they can be
+# safely used across Linux, macOS, and Windows.
 class Zaru
-  CHARACTER_FILTER = /[\x00-\x1F\/\\:\*\?\"<>\|]/u
-  UNICODE_WHITESPACE = /[[:space:]]+/u
+  CHARACTER_FILTER = %r{[\x00-\x1F/\\:*?"<>|]}u.freeze
+  UNICODE_WHITESPACE = /[[:space:]]+/u.freeze
   WINDOWS_RESERVED_NAMES =
-    %w{CON PRN AUX NUL COM1 COM2 COM3 COM4 COM5
+    %w[CON PRN AUX NUL COM1 COM2 COM3 COM4 COM5
        COM6 COM7 COM8 COM9 LPT1 LPT2 LPT3 LPT4
-       LPT5 LPT6 LPT7 LPT8 LPT9}
+       LPT5 LPT6 LPT7 LPT8 LPT9].freeze
   FALLBACK_FILENAME = 'file'
 
   def initialize(filename, options = {})
@@ -18,7 +20,7 @@ class Zaru
   # strip whitespace on beginning and end
   # collapse intra-string whitespace into single spaces
   def normalize
-    @normalized ||= @raw.strip.gsub(UNICODE_WHITESPACE,' ')
+    @normalize ||= @raw.strip.gsub(UNICODE_WHITESPACE, ' ')
   end
 
   # remove bad things!
@@ -29,8 +31,8 @@ class Zaru
   #
   # this renormalizes after filtering in order to collapse whitespace
   def sanitize
-    @sanitized ||=
-      filter(normalize.gsub(CHARACTER_FILTER,'')).gsub(UNICODE_WHITESPACE,' ')
+    @sanitize ||=
+      filter(normalize.gsub(CHARACTER_FILTER, '')).gsub(UNICODE_WHITESPACE, ' ')
   end
 
   # cut off at 255 characters
@@ -38,7 +40,7 @@ class Zaru
   # make sure there is room to add a file extension later
   def truncate
     max_length = [254 - @padding, 0].max + 1
-    @truncated ||= sanitize.chars.to_a.slice(0...max_length).join
+    @truncate ||= sanitize.chars.to_a.slice(0...max_length).join
   end
 
   def to_s
@@ -52,24 +54,23 @@ class Zaru
 
   private
 
-    attr_reader :fallback
+  attr_reader :fallback
 
-    def filter(filename)
-      filename = filter_windows_reserved_names(filename)
-      filename = filter_blank(filename)
-      filename = filter_dot(filename)
-    end
+  def filter(filename)
+    filename = filter_windows_reserved_names(filename)
+    filename = filter_blank(filename)
+    filter_dot(filename)
+  end
 
-    def filter_windows_reserved_names(filename)
-      WINDOWS_RESERVED_NAMES.include?(filename.upcase) ? fallback : filename
-    end
+  def filter_windows_reserved_names(filename)
+    WINDOWS_RESERVED_NAMES.include?(filename.upcase) ? fallback : filename
+  end
 
-    def filter_blank(filename)
-      filename.empty?? fallback : filename
-    end
+  def filter_blank(filename)
+    filename.empty? ? fallback : filename
+  end
 
-    def filter_dot(filename)
-      filename.start_with?('.')? "#{fallback}#{filename}" : filename
-    end
-
+  def filter_dot(filename)
+    filename.start_with?('.') ? "#{fallback}#{filename}" : filename
+  end
 end
