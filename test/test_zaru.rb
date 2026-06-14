@@ -65,7 +65,8 @@ class ZaruTest < Test::Unit::TestCase
     # Microsoft's documentation states that "avoid these names followed
     # immediately by an extension; for example, NUL.txt and NUL.tar.gz
     # are both equivalent to NUL
-    assert_equal 'file.txt', Zaru.sanitize!('nul.ext')
+    assert_equal 'file.txt', Zaru.sanitize!('nul.txt')
+    assert_equal 'file.txt', Zaru.sanitize!('.nul.txt')
     assert_equal 'file.tar.gz', Zaru.sanitize!('nul.tar.gz')
     assert_equal 'file.tar.gz', Zaru.sanitize!(' COM³.tar.gz ')
 

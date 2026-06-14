@@ -63,7 +63,16 @@ class Zaru
   end
 
   def filter_windows_reserved_names(filename)
-    WINDOWS_RESERVED_NAMES.include?(filename.upcase) ? fallback : filename
+    return "" if filename.empty?
+
+    parts = filename.split('.').reject(&:empty?)
+    if WINDOWS_RESERVED_NAMES.include?(parts[0].upcase)
+      parts.slice!(0)
+      parts.unshift(fallback)
+      parts.join('.')
+    else
+      filename
+    end
   end
 
   def filter_blank(filename)
