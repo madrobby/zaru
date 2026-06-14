@@ -1,4 +1,5 @@
 AllCops:
   NewCops: enable
+  SuggestExtensions: false
 Gemspec/RequireMFA:
   Enabled: false

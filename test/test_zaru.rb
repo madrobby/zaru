@@ -59,9 +59,14 @@ class ZaruTest < Test::Unit::TestCase
     assert_equal 'file', Zaru.sanitize!('COM³')
     # special casing for LPT/COM only go up to "9"
     assert_equal 'COM10', Zaru.sanitize!('COM10')
+  end
 
+  def test_windows_reserved_names_with_extensions
     assert_equal 'con.ext', Zaru.sanitize!('con.ext')
     assert_equal 'file.con', Zaru.sanitize!('file.con')
+
+    assert_equal 'Acon.ext', Zaru.sanitize!('Acon.ext')
+    assert_equal 'Afile.con', Zaru.sanitize!('Afile.con')
   end
 
   def test_blanks
