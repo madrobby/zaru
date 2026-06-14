@@ -62,9 +62,16 @@ class ZaruTest < Test::Unit::TestCase
   end
 
   def test_windows_reserved_names_with_extensions
-    assert_equal 'con.ext', Zaru.sanitize!('con.ext')
-    assert_equal 'file.con', Zaru.sanitize!('file.con')
+    # Microsoft's documentation states that "avoid these names followed
+    # immediately by an extension; for example, NUL.txt and NUL.tar.gz
+    # are both equivalent to NUL
+    assert_equal 'file.txt', Zaru.sanitize!('nul.ext')
+    assert_equal 'file.tar.gz', Zaru.sanitize!('nul.tar.gz')
+    assert_equal 'file.tar.gz', Zaru.sanitize!(' COM³.tar.gz ')
 
+    # it's fine if reserved names are used as extensions
+    # or as part of filenames
+    assert_equal 'file.con', Zaru.sanitize!('file.con')
     assert_equal 'Acon.ext', Zaru.sanitize!('Acon.ext')
     assert_equal 'Afile.con', Zaru.sanitize!('Afile.con')
   end
