@@ -6,9 +6,9 @@ class Zaru
   CHARACTER_FILTER = %r{[\x00-\x1F/\\:*?"<>|]}u.freeze
   UNICODE_WHITESPACE = /[[:space:]]+/u.freeze
   WINDOWS_RESERVED_NAMES =
-    %w[CON PRN AUX NUL COM1 COM2 COM3 COM4 COM5
-       COM6 COM7 COM8 COM9 LPT1 LPT2 LPT3 LPT4
-       LPT5 LPT6 LPT7 LPT8 LPT9].freeze
+    %w[CON PRN AUX NUL COM1 COM2 COM3 COM4 COM5 COM6 COM7 COM8 COM9
+       COM COM² COM³ LPT1 LPT2 LPT3 LPT4 LPT5 LPT6 LPT7 LPT8 LPT9 LPT¹
+       LPT² LPT³].freeze
   FALLBACK_FILENAME = 'file'
 
   def initialize(filename, options = {})

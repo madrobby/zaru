@@ -54,6 +54,10 @@ class ZaruTest < Test::Unit::TestCase
     assert_equal 'file', Zaru.sanitize!('com4')
     assert_equal 'file', Zaru.sanitize!(' aux')
     assert_equal 'file', Zaru.sanitize!(" LpT\x122")
+
+    # Windows is... weird
+    assert_equal 'file', Zaru.sanitize!('COM³')
+    # special casing for LPT/COM only go up to "9"
     assert_equal 'COM10', Zaru.sanitize!('COM10')
 
     assert_equal 'con.ext', Zaru.sanitize!('con.ext')
