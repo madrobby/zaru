@@ -1,6 +1,8 @@
 zaru
 ====
 
+[![CI tests](https://github.com/madrobby/zaru/actions/workflows/main.yml/badge.svg)](https://github.com/madrobby/zaru/actions/workflows/main.yml)
+
 Filename sanitization for Ruby. This is useful when you generate filenames for downloads from user input (we're using it for PDF invoice downloads in [Noko](https://nokotime.com)).
 
 ```ruby
