@@ -28,7 +28,7 @@ Zaru.sanitize! "<<<", :fallback => 'no_file'
 # resulting filename is 'no_file'
 ```
 
-Zaru works with Ruby 1.9 or later. It's experimental and may eat your cat. Don't trust it in production systems.
+Zaru works with Ruby 2.0 or later. It's experimental and may eat your cat. Don't trust it in production systems.
 
 Bad things in filenames
 -----------------------
@@ -47,5 +47,5 @@ All [Unicode whitespace](http://en.wikipedia.org/wiki/Whitespace_character#Unico
 
 [Wait, what, Zaru?](http://en.wikipedia.org/wiki/Zaru)
 
-Zaru is licensed under the terms of the MIT license. 
-(c) 2013-2025 Thomas Fuchs
+Zaru is licensed under the terms of the MIT license.
+(c) 2013-2026 Thomas Fuchs

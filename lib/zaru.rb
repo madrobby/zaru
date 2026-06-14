@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 class Zaru
   CHARACTER_FILTER = /[\x00-\x1F\/\\:\*\?\"<>\|]/u
