@@ -27,7 +27,7 @@ class ZaruTest < Test::Unit::TestCase
     assert_equal 245, Zaru.sanitize!(name, padding: 10).length
   end
 
-  def test_padding_boundary_254
+  def test_padding_exact_boundary
     result = Zaru.sanitize!('A' * 1000, padding: 254)
     assert_equal 1, result.length
     assert_operator result.length, :<=, 255
@@ -120,6 +120,4 @@ class ZaruTest < Test::Unit::TestCase
     assert_equal 'custom', Zaru.sanitize!('...', fallback: 'custom')
     assert_equal 'custom', Zaru.sanitize!('<<>>', fallback: 'custom')
   end
-
-
 end
